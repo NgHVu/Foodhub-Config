@@ -1,28 +1,23 @@
-# --- CẤU HÌNH CƠ BẢN ---
 replicaCount: 1
+
 image:
   repository: 257394468168.dkr.ecr.ap-southeast-1.amazonaws.com/foodhub-frontend
   tag: develop-6aea1a8
 
 containerPort: 3000
 
-# --- BLUE/GREEN ---
 blueGreen:
   enabled: true
-  autoPromotionEnabled: false # Tắt để demo
+  autoPromotionEnabled: false
 
-# --- SERVICE ---
 service:
-  type: LoadBalancer # Để LoadBalancer cho giống code cũ (hoặc ClusterIP nếu muốn tiết kiệm)
-  port: 80           # Expose port 80 ra ngoài
+  type: LoadBalancer
+  port: 80
 
-# --- HEALTH CHECK (Frontend Next.js không có actuator) ---
 probePath: "/" 
 readinessDelay: 15
 livenessDelay: 30
 
-# --- BIẾN MÔI TRƯỜNG RIÊNG ---
 env:
   - name: NODE_ENV
     value: "production"
-  # Các biến URL khác đã lấy từ global-configs (envFrom trong chart gốc)

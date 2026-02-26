@@ -47,11 +47,10 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git # <--- THAY LINK GIT CỦA BẠN
+    repoURL: https://github.com/NgHVu/dacn-config.git 
     targetRevision: main
     path: helm/foodhub-chart
     helm:
-      # ArgoCD sẽ lấy file values này đè lên values mặc định của Chart
       valueFiles:
         - ../../environments/dev/users-values.yaml
   destination:

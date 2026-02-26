@@ -4,29 +4,17 @@ metadata:
   name: global-configs
   namespace: foodhub-staging
 data:
-    
-  # QUAN TRỌNG: Thay thế 'RDS_ENDPOINT_HERE' bằng output từ lệnh 'terraform output rds_endpoint'
-  # Ví dụ cũ: foodhub-db.cnwgawc8eb9k.ap-southeast-1.rds.amazonaws.com
   DB_URL_USERS: "jdbc:postgresql://foodhu-staging-db.cnwgawc8eb9k.ap-southeast-1.rds.amazonaws.com:5432/foodhub_users"
   DB_URL_PRODUCTS: "jdbc:postgresql://foodhub-staging-db.cnwgawc8eb9k.ap-southeast-1.rds.amazonaws.com:5432/foodhub_products"
   DB_URL_ORDERS: "jdbc:postgresql://foodhub-staging-db.cnwgawc8eb9k.ap-southeast-1.rds.amazonaws.com:5432/foodhub_orders"
-
-  # --- SECURITY & APP ---
   JWT_EXPIRATION_MS: "86400000"
   SPRING_PROFILES_ACTIVE: "staging"
-
-  # --- SERVICE DISCOVERY (Kết nối nội bộ trong K8s) ---
-  # Định dạng: http://<tên-release-trong-argocd>:<port>
   APP_SERVICES_USERS_URL: "http://foodhub-staging-users:8082"
   APP_SERVICES_PRODUCTS_URL: "http://foodhub-staging-products:8081"
   APP_SERVICES_ORDERS_URL: "http://foodhub-staging-orders:8083"
-  
-  # --- FRONTEND CONFIG ---
   USERS_SERVICE_URL: "http://foodhub-staging-users:8082"
   PRODUCTS_SERVICE_URL: "http://foodhub-staging-products:8081"
   ORDERS_SERVICE_URL: "http://foodhub-dev-staging:8083"
-  
-  # Vì chạy Port-Forward nên URL public là localhost
   NEXT_PUBLIC_APP_URL: "http://a0a045358fd094087831676cf2c907ee-702165636.ap-southeast-1.elb.amazonaws.com"
   GOOGLE_REDIRECT_URI: "http://a0a045358fd094087831676cf2c907ee-702165636.ap-southeast-1.elb.amazonaws.com/callback"
   FRONTEND_URL: "http://a0a045358fd094087831676cf2c907ee-702165636.ap-southeast-1.elb.amazonaws.com"

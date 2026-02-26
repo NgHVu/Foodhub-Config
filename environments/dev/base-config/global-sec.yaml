@@ -5,13 +5,10 @@ metadata:
   namespace: foodhub-dev
 type: Opaque
 stringData:
-  # Mật khẩu Database (Phải khớp với Terraform)
   DB_ADMIN_PASSWORD: "FoodHubdev12345"
   DB_PASSWORD_USERS: "Password_users_123"
   DB_PASSWORD_PRODUCTS: "Password_products_123"
   DB_PASSWORD_ORDERS: "Password_orders_123"
-  
-  # Khóa bảo mật JWT & Google OAuth
   JWT_EXPIRATION_MS: "86400000"
   JPA_DDL_AUTO: "update"
   JWT_SECRET_KEY: "dGhwY3kxcGN5MWhMWE5sWTNKbGRDMXJaWGt0Wm05eUxXcDNkQzFoZFhSb1pXNTBhV05oZEdsdmJpMXBiaTFrWlhaelpXTnZjSE10Y0hKdmFtVmpkQzF0ZFhOMExXSmxMWFpsY25rdGJHOXVaeTFoYm1RdGMyVmpkWEps"

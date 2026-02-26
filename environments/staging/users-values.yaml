@@ -1,4 +1,3 @@
-# --- CẤU HÌNH CƠ BẢN ---
 replicaCount: 1
 image:
   repository: 257394468168.dkr.ecr.ap-southeast-1.amazonaws.com/foodhub-users
@@ -6,22 +5,18 @@ image:
 
 containerPort: 8082
 
-# --- BLUE/GREEN ---
 blueGreen:
   enabled: true
   autoPromotionEnabled: false
 
-# --- SERVICE ---
 service:
-  type: ClusterIP # Backend chỉ cần nội bộ
-  port: 8082      # Giữ nguyên port cũ để khớp với ConfigMap
+  type: ClusterIP 
+  port: 8082     
 
-# --- HEALTH CHECK ---
 probePath: "/actuator/health/readiness"
 readinessDelay: 60
 livenessDelay: 80
 
-# --- BIẾN MÔI TRƯỜNG RIÊNG ---
 env:
   - name: DB_USER_USERS
     value: "user_users"
