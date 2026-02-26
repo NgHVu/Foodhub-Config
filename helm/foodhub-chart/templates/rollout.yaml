@@ -60,8 +60,6 @@ spec:
             failureThreshold: 5
           livenessProbe:
             httpGet:
-              # Automatically swaps 'readiness' with 'liveness' for Spring Boot. 
-              # Does nothing for '/' (Frontend) which is perfectly safe.
               path: {{ .Values.probePath | replace "readiness" "liveness" }}
               port: {{ .Values.containerPort }}
             initialDelaySeconds: {{ .Values.livenessDelay }}
