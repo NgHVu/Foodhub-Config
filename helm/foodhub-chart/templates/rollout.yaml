@@ -23,8 +23,16 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Release.Name }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -34,9 +42,9 @@ spec:
           
           envFrom:
             - configMapRef:
-                name: global-configs
+                name: {{ .Values.globalConfigMap }}
             - secretRef:
-                name: foodhub-secrets
+                name: {{ .Values.globalSecret }}
 
           {{- if .Values.env }}
           env:
@@ -52,6 +60,8 @@ spec:
             failureThreshold: 5
           livenessProbe:
             httpGet:
+              # Automatically swaps 'readiness' with 'liveness' for Spring Boot. 
+              # Does nothing for '/' (Frontend) which is perfectly safe.
               path: {{ .Values.probePath | replace "readiness" "liveness" }}
               port: {{ .Values.containerPort }}
             initialDelaySeconds: {{ .Values.livenessDelay }}

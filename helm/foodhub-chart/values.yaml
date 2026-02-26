@@ -1,4 +1,3 @@
-# --- CẤU HÌNH CƠ BẢN ---
 replicaCount: 1
 
 image:
@@ -6,28 +5,24 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 
-# Cổng mặc định của container (Backend thường là 8080)
 containerPort: 8080
-
-# Namespace mặc định (Có thể bị ghi đè bởi ArgoCD Application)
 namespace: foodhub-dev
 
-# --- CẤU HÌNH BLUE/GREEN (ARGO ROLLOUTS) ---
+globalConfigMap: "global-configs"
+globalSecret: "foodhub-secrets"
+
 blueGreen:
   enabled: true
-  autoPromotionEnabled: false # Tắt tự động để Demo thủ công (Set true cho Prod thực tế)
+  autoPromotionEnabled: false
 
-# --- CẤU HÌNH SERVICE ---
 service:
   type: ClusterIP
-  port: 80 # Port mà Service mở ra cho bên ngoài gọi vào
+  port: 80
 
-# --- CẤU HÌNH HEALTH CHECK (Logic cũ của bạn) ---
-probePath: "/actuator/health/readiness" # Mặc định cho Backend Spring Boot
-readinessDelay: 60                      # Chờ DB khởi tạo
+probePath: "/actuator/health/readiness"
+readinessDelay: 60
 livenessDelay: 80
 
-# --- TÀI NGUYÊN ---
 resources:
   limits:
     cpu: 500m
@@ -36,14 +31,15 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-# --- AUTO SCALING (HPA) ---
+podSecurityContext: {}
+securityContext: {}
+
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
 
-# --- INGRESS (Tên miền) ---
 ingress:
   enabled: false
   className: ""
@@ -54,5 +50,4 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
 
-# --- BIẾN MÔI TRƯỜNG RIÊNG ---
 env: []

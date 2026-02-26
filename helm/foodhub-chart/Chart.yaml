@@ -1,12 +1,12 @@
 apiVersion: v2
 name: foodhub-chart
-description: Base Helm chart cho Microservices FoodHub (Hỗ trợ Argo Rollouts Blue/Green)
+description: Base Helm chart for FoodHub Microservices with Argo Rollouts Blue/Green
 type: application
 version: 0.2.0
 appVersion: "1.0.0"
 maintainers:
   - name: FoodHub-DevOps-Team
-    email: admin@foodhub.com
+    email: nhoangvu2306@gmail.com
 keywords:
   - foodhub
   - microservices
