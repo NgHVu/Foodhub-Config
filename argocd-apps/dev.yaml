@@ -1,6 +1,5 @@
 # ==========================================================
 # 1. BASE CONFIG (ConfigMap & Secret)
-# Phần này chạy trước để tạo môi trường cho các App
 # ==========================================================
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -12,17 +11,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git # <--- THAY LINK GIT CỦA BẠN
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: environments/dev/base-config/
-    # Chỉ định ArgoCD chỉ lấy các file yaml thuần (loại trừ các file values.yaml)
-    # Tuy nhiên, cách tốt nhất là bạn nên gom global-cm.yaml và global-sec.yaml 
-    # vào 1 thư mục con, ví dụ: environments/dev/base-config/
-    # Ở đây tôi giả định bạn đã để nó trong environments/dev/
     directory:
       recurse: false
       include: '*.yaml' 
-      exclude: '*-values.yaml' # Bỏ qua các file values, chỉ lấy global-*.yaml
+      exclude: '*-values.yaml'
   destination:
     server: https://kubernetes.default.svc
     namespace: foodhub-dev
@@ -31,7 +26,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true # Tự tạo namespace foodhub-dev nếu chưa có
+      - CreateNamespace=true
 
 ---
 # ==========================================================
@@ -47,7 +42,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git 
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git 
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -75,7 +70,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git # <--- THAY LINK GIT CỦA BẠN
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -103,7 +98,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git # <--- THAY LINK GIT CỦA BẠN
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -131,7 +126,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git # <--- THAY LINK GIT CỦA BẠN
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:

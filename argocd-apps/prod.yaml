@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: environments/prod/base-config/
     directory:
@@ -42,7 +42,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -70,7 +70,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -98,7 +98,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
@@ -126,7 +126,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/NgHVu/dacn-config.git
+    repoURL: https://github.com/NgHVu/Foodhub-Config.git
     targetRevision: main
     path: helm/foodhub-chart
     helm:
